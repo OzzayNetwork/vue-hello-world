@@ -3,122 +3,123 @@
 
 <head>
     <title>My first Vue app</title>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        .d-none {
+            display: none !important;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="app">
-        {{ message }}
-        <p>
-            {{something}}
+    <div class="d-none">
+        <div id="app">
+            {{ message }}
+            <p>
+                {{something}}
+            </p>
+        </div>
+
+        <div id="kevId">
+            {{ message }}
+            <p>
+                {{something}}
+            </p>
+        </div>
+
+        <div id="app-2">
+            <span v-bind:title="message">
+              Hover your mouse over me for a few seconds
+              to see my dynamically bound title!
+            </span>
+        </div>
+
+        <div id="app-3">
+            <span v-if="message">Now you see me</span>
+        </div>
+
+        <div id="app-4">
+            <ol>
+                <li v-for="todo in todos">
+                    {{ todo.text }}
+                </li>
+            </ol>
+        </div>
+
+        <div id="app-5">
+            <p>{{ message }}</p>
+            <button v-on:click="reverseMessage">Reverse Message</button>
+        </div>
+
+        <div id="app-6">
+            <p>{{ message }}</p>
+            <input v-model="message">
+        </div>
+
+    </div>
+
+    <div id="CreateApp">
+        <h1>This is Vue :)</h1>
+
+        <!-- if else statement s -->
+        <div v-if="showBooks">
+            <p><strong>{{title}}</strong> {{author}} {{age}}</p>
+        </div>
+
+        <!-- you can use either @ or v-on to attach events to buttons -->
+        <button v-on:click="age++">Increase age</button>
+        <button @click="age--">Decrease age</button>
+        <p></p>
+
+        <!-- updating the title directly after clicking -->
+        <p @click="title='The JavaScript Master'">Click me to change the book title to <strong>The JavaScript Master</strong></p>
+
+        <!-- updating the title directly using functions -->
+        <p @click="changeTitle">Click me to change the book title to the
+            <strong>vue master</strong>
         </p>
-    </div>
 
-    <div id="kevId">
-        {{ message }}
-        <p>
-            {{something}}
+        <!-- updating the title with a function that has arguments -->
+        <p @click="newTitle('The Front End Guru')">Click me to change the book title to the
+            <strong>The Front End Guru</strong>
         </p>
+
+        <!-- use this toggle -->
+
+        <!-- v-if completely takes out an element from the DOM -->
+
+        <button @click="toggleShowBooks">
+            <span v-if="showBooks">Hide books</span>
+
+            <!-- show this when it is hidden -->
+            <span v-if="!showBooks">Show books</span>
+        </button>
+        <p></p>
+        <!-- or you can use this to toggle -->
+
+        <button @click="toggleShowBooks">
+            <span v-if="showBooks">Hide books</span>
+
+            <!-- show this when it is hidden -->
+            <span v-else>Show books</span>
+        </button>
+        <p></p>
+
+        <!-- the other very alternative method -->
+
+        <!-- when using v-show it uses the css to either display or hide the element -->
+        <div v-show="showBooks">Currently showing books</div>
+
     </div>
 
-    <div id="app-2">
-        <span v-bind:title="message">
-          Hover your mouse over me for a few seconds
-          to see my dynamically bound title!
-        </span>
-    </div>
 
-    <div id="app-3">
-        <span v-if="message">Now you see me</span>
-    </div>
-
-    <div id="app-4">
-        <ol>
-            <li v-for="todo in todos">
-                {{ todo.text }}
-            </li>
-        </ol>
-    </div>
-
-    <div id="app-5">
-        <p>{{ message }}</p>
-        <button v-on:click="reverseMessage">Reverse Message</button>
-    </div>
-
-    <div id="app-6">
-        <p>{{ message }}</p>
-        <input v-model="message">
-    </div>
 
 
 
     <script>
-        var app = new Vue({
-            el: " #app ",
-
-            data: {
-                message: "Hello Vue are you good! ",
-                something: "Something else "
-            }
-        });
-
-        var app2 = new Vue({
-            el: '#app-2',
-            data: {
-                message: 'You loaded this page on ' + new Date().toLocaleString()
-            },
-
-        });
-
-        var app3 = new Vue({
-            el: '#app-3',
-            data: {
-                message: true
-            }
-        });
-
-        var app4 = new Vue({
-            el: '#app-4',
-            data: {
-                todos: [{
-                    text: 'Learn JavaScript'
-                }, {
-                    text: 'Learn Vue'
-                }, {
-                    text: 'Build something awesome'
-                }]
-            }
-        });
-
-        var app5 = new Vue({
-            el: '#app-5',
-            data: {
-                message: 'Hello Vue.js!'
-            },
-            methods: {
-                reverseMessage: function() {
-                    this.message = this.message.split('').reverse().join('')
-                }
-            }
-        });
-
-        var app6 = new Vue({
-            el: '#app-6',
-            data: {
-                message: 'Hello Vue!'
-            }
-        });
-
-        var myFirstTrial = new Vue({
-            el: '#kevId',
-            data: {
-                message: 'Hello World'
-            }
-        })
-
-
-        console.log(app.message)
     </script>
+
+    <script src="app.js"></script>
 </body>
 
 </html>
