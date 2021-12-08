@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My first Vue app</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        .d-none {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="practiceApp">
+        <h1>Road to Vue King Dom </h1>
+        <p v-show="showBooks">{{title}}</p>
+        <button @click="changeTitle">Click to change title</button>
+
+        <button @click="toggleVisibility">
+            <span v-show="showBooks">hide book title</span>
+            <span v-show="!showBooks">Show book title</span>
+        </button>
+        <script src="practice.js">
+        </script>
+</body>
+
+</html>
