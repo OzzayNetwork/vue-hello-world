@@ -8,6 +8,27 @@
         .d-none {
             display: none !important;
         }
+        
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .mt-0 {
+            margin-top: 0px !important;
+        }
+        
+        .pt-0 {
+            padding-top: 0px !important;
+        }
+        
+        .fav img {
+            border: 4px solid yellow;
+        }
     </style>
 </head>
 
@@ -109,15 +130,54 @@
 
         <!-- when using v-show it uses the css to either display or hide the element -->
         <div v-show="showBooks">Currently showing books</div>
+        <br>
+        <br>
+        <!-- <br> mouse events -->
+
+        <!-- this is how we pass our own arguments plus the event argument($event,our_argument) -->
+        <div class="box" @mouseover="handleEvent($event,5)">Mouseover (enter)</div>
+
+        <!-- when we don't pass our own argument with muse events,the event object becomes the first argument that is passed -->
+        <div class="box" @mouseleave="handleEvent"> mouseleave</div>
+        <div class="box" @dblclick="handleEvent">double click</div>
+        <div class="box" @mousemove="handleMouseMove">Position {{x}} {{y}}</div>
+
+
+        <h4>Looping through items</h4>
+        <ul>
+
+            <!-- the class isFav is included if the isFav property is true.This is a class binding that is bveing done in regards to the value -->
+            <li v-for="items in books" :class="{fav:items.isFav}" @click="changeFav(items)">
+                <strong>{{items.title}}</strong>
+                <p class="pt-0 mt-0">{{items.writer}}</p>
+                <img :src="items.img">
+            </li>
+        </ul>
+
+        <h4>Attribute binding</h4>
+
+        <!-- this can be done in two ways -->
+        <!-- first one -->
+        <p><a v-bind:href="url">Facebook website</a></p>
+
+        <!-- first one -->
+        <p><a :href="url">Another facebook link</a></p>
+        <!-- basically for binding you can use either v-bind or just the full colon(:) -->
+
+        <h4>Computed properties</h4>
+        <p> computed properties( a way to define a data property inside our component that depends on other data that we have inside that component)</p>
+
+        <ul>
+
+            <!-- the class isFav is included if the isFav property is true.This is a class binding that is bveing done in regards to the value -->
+            <li v-for="items in filteredBooks" :class="{fav:items.isFav}" @click="changeFav(items)">
+                <strong>{{items.title}}</strong>
+                <p class="pt-0 mt-0">{{items.writer}}</p>
+                <img :src="items.img">
+            </li>
+        </ul>
 
     </div>
-
-
-
-
-
-    <script>
-    </script>
 
     <script src="app.js"></script>
 </body>
